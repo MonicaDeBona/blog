@@ -25,13 +25,13 @@
                         <li class="nav-item">
                             <router-link class="nav-link" :class="this.$route.name === 'articles' ? 'active' : ''"
                                 :to="{ name: 'articles' }">
-                                Projects
+                                Articles
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" :class="this.$route.name === 'edit' ? 'active' : ''"
                                 :to="{ name: 'edit' }">
-                                About us
+                                Edit
                             </router-link>
                         </li>
                     </ul>

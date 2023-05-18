@@ -1,14 +1,41 @@
 <script>
-    export default {
+import { store } from '../store';
+import Editor from '@tinymce/tinymce-vue';
+export default {
+    components: {
+        Editor,
+    },
+    data() {
+        return {
+            store,
+        }
+    },
+    methods: {
         
+    },
+    created() {
+        const newContent = localStorage.getItem('content');
+        if (newContent) {
+            store.content = newContent;
+        }
+    },
+    watch: {
+        'store.content'() {
+            localStorage.setItem('content', store.content)
+        }
     }
+    
+}
 </script>
 
 <template>
     <div>
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus dolorem fugit laborum totam, culpa ex sapiente vitae eligendi numquam, placeat exercitationem. Aperiam vel quod laudantium sit, nesciunt porro dolorum impedit.
-        </p>
+        <Editor v-model="store.content" api-key="a15p8ov346v5455gjpksa9x7eh8lixrk8e7k7b0bhgvf2iot" :init="{
+                plugins: 'lists link image table code help wordcount'
+            }" />
+        <div class="text">
+            {{ store.content }} 
+        </div>
     </div>
 </template>
 
